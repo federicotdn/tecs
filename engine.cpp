@@ -19,7 +19,7 @@ Engine::~Engine()
 void Engine::update(const double gameTime)
 {
 	for (auto it = systems.begin(); it != systems.end(); it++)
-		(*it)->update(gameTime);
+		(*it)->updateBase(gameTime);
 }
 
 IDtype Engine::createEntity()

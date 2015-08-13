@@ -1,7 +1,7 @@
 ## GLOBAL SETTINGS ##
 compiler = 'g++'
 program_name = 'ecs'
-global_flags = '-std=c++11 -Wall -pedantic -isystem /usr/include/bullet -O4'
+global_flags = '-std=c++11 -Wall -isystem /usr/include/bullet'
 
 ## ENVIRONMENT ##
 env = Environment(CXX = compiler)
@@ -13,14 +13,14 @@ src_physics = Split('physics/physicssystem.cpp')
 src_render = Split('render/rendersystem.cpp')
 src_tdogl = Split('tdogl/Bitmap.cpp tdogl/Texture.cpp tdogl/Camera.cpp tdogl/Program.cpp tdogl/Shader.cpp')
 src_input = Split('input/inputsystem.cpp')
-src_main = Split('assetloader.cpp engine.cpp game.cpp main.cpp')
+src_main = Split('systembase.cpp assetloader.cpp engine.cpp game.cpp main.cpp')
 
 ## OBJECT FILES ##
 obj_physics = Split('physics/physicssystem.o')
 obj_render = Split('render/rendersystem.o')
 obj_tdogl = Split('tdogl/Bitmap.o tdogl/Texture.o tdogl/Camera.o tdogl/Program.o tdogl/Shader.o')
 obj_input = Split('input/inputsystem.o')
-obj_main = Split('assetloader.o engine.o game.o main.o')
+obj_main = Split('systembase.o assetloader.o engine.o game.o main.o')
 
 obj_all = obj_physics + obj_render + obj_tdogl + obj_main + obj_input
 

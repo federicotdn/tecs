@@ -11,6 +11,7 @@ class TestGame : public ecs::Game
 {
 	using Entity = ecs::IDtype;
 
+	ecs::PhysicsSystem* ps;
 	ecs::RenderSystem* rs;
 	ecs::InputSystem* is;
 
@@ -19,11 +20,12 @@ class TestGame : public ecs::Game
 	ecs::BTAsset *cube;
 
 	std::vector<Entity> ents;
+	std::vector<Entity> projectiles;
 
 public:
 	void initialize() override
 	{
-		ecs::PhysicsSystem* ps = new ecs::PhysicsSystem{};
+		ps = new ecs::PhysicsSystem{};
 		rs = new ecs::RenderSystem{window, screenWidth, screenHeight};
 		is = new ecs::InputSystem{window, engine};
 
@@ -71,7 +73,7 @@ public:
 			}
 		}
 
-		std::cout << "Termino inicializacion.  Entity count: " << engine.entityCount() << std::endl;
+		std::cout << "Initialization complete.  Entity count: " << engine.entityCount() << std::endl;
 	}
 
 	void update(const double gameTime) override
@@ -101,6 +103,8 @@ public:
 
 			btVector3 vec{direction.x, direction.y, direction.z};
 			phy->body->setLinearVelocity(vec * 200);
+
+			projectiles.push_back(ent);
 		}
 		else if (glfwGetKey(window, 'R') && time > 0.5)
 		{
@@ -133,13 +137,30 @@ public:
 				}
 			}
 		}
+		else if (glfwGetKey(window, 'T') && time > 0.5)
+		{
+			time = 0;
+
+			for (auto en : projectiles)
+			{
+				engine.destroyEntity(en);
+			}
+
+			projectiles.clear();
+		}
+		else if (glfwGetKey(window, 'F') && time > 0.5)
+		{
+			time = 0;
+
+			ps->setActive(!ps->isActive());
+		}
 
 		engine.update(gameTime);
 	}
 
 	void end() override
 	{
-		std::cout << "Saliendo de funcion de limpieza." << std::endl;
+		std::cout << "Exit end function." << std::endl;
 	}
 };
 

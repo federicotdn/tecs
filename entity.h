@@ -13,12 +13,12 @@ namespace ecs
 	class Entity
 	{
 		friend class Engine;
-		
+
 		const IDtype ID;
 		mutable std::unordered_map<const std::type_info*, std::unique_ptr<Component>> components;
 
 		explicit Entity(const IDtype id) : ID{id} {}
-		
+
 	public:
 
 		IDtype getID() const { return ID; }

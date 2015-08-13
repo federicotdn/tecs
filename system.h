@@ -11,8 +11,8 @@ namespace ecs
 	template<class T> class System : public SystemBase
 	{
 		std::unordered_set<IDtype> entities;
-		
-		static_assert(std::is_base_of<Node, T>(), "T debe ser subclase de ecs::Node.");
+
+		static_assert(std::is_base_of<Node, T>(), "T must be a subclass of ecs::Node.");
 
 		void updateEntity(Entity& ent, bool forceRemove)
 		{
@@ -21,7 +21,7 @@ namespace ecs
 			if (!entities.count(id))
 				return;
 
-			if (forceRemove || !T::canBuildFromEntity(ent))				
+			if (forceRemove || !T::canBuildFromEntity(ent))
 			{
 				auto it = nodes.begin();
 

@@ -16,4 +16,9 @@ $ ./ecs
 Uses OpenGL, Bullet Physics, GLEW, GLFW3 and GLM, along with files from Tom Dalling's [modern OpenGL tutorial](http://www.tomdalling.com/blog/category/modern-opengl/).  Entity component system with nodes based on the idea explained [here](http://www.richardlord.net/blog/what-is-an-entity-framework).
 
 ## Usage
-Use the WASD keys and mouse to move/look around.  Press 'e' to fire objects and 'r' to reset them.
+
+Use the WASD keys and mouse to move/look around.  Press 'e' to fire cups, 't' to delete all cups, and 'r' to reset the cubes.  Press 'f' to enable/disable the physics system (the rendering system will continue running).
+
+## Todo
+
+Change GLM degrees to radians.
